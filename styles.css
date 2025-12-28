@@ -9,20 +9,34 @@
 }
 
 :root {
-  --primary: #6366f1;
-  --secondary: #ec4899;
-  --dark: #0f172a;
-  --light: #f1f5f9;
-  --text: #1e293b;
-  --border: #e2e8f0;
-  --transition: 0.3s ease;
+  --primary: #8b5cf6; /* neon purple */
+  --secondary: #fb7185; /* pink accent */
+  --dark: #04060a; /* page background deep */
+  --light: #e6eef8;
+  --text: #dbeafe; /* light text */
+  --muted: #94a3b8;
+  --border: rgba(255,255,255,0.06);
+  --transition: 0.28s ease;
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text);
   line-height: 1.6;
-  background: #ffffff;
+  background: radial-gradient(ellipse at bottom, #07112a 0%, var(--dark) 60%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Full-screen canvas for starfield */
+#space {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: block;
 }
 
 /* ============================================
@@ -43,8 +57,7 @@ body {
 .site-header {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(6,8,15,0.6), rgba(6,8,15,0.35));
   border-bottom: 1px solid var(--border);
   z-index: 1000;
   padding: 1rem 0;
@@ -67,7 +80,7 @@ body {
 
 .brand .role {
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--muted);
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -80,7 +93,7 @@ body {
 
 .nav-list a {
   text-decoration: none;
-  color: var(--text);
+  color: var(--light);
   font-weight: 500;
   transition: color var(--transition);
   position: relative;
@@ -140,19 +153,19 @@ body {
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  color: var(--dark);
+  color: var(--light);
 }
 
 .hero .lead {
   font-size: 1.25rem;
-  color: #475569;
+  color: #cbd5ff;
   margin-bottom: 2rem;
   line-height: 1.8;
 }
 
 .hero .meta {
   font-size: 1rem;
-  color: #64748b;
+  color: var(--muted);
   margin-bottom: 2.5rem;
 }
 
@@ -180,7 +193,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, transparent 30%, rgba(99, 102, 241, 0.25) 50%, transparent 70%);
+  background: linear-gradient(120deg, transparent 30%, rgba(139,92,246,0.18) 50%, transparent 70%);
   transition: left 0.8s ease;
 }
 
@@ -343,7 +356,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: var(--light);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border-radius: 0.75rem;
   transition: all var(--transition);
   cursor: pointer;
@@ -351,10 +364,10 @@ body {
 }
 
 .skill:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
-  background: white;
-  border: 1px solid var(--primary);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(139,92,246,0.12);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
 }
 
 .skill img {
@@ -367,7 +380,7 @@ body {
 .skill span {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--light);
 }
 
 /* ============================================
@@ -380,16 +393,16 @@ body {
 
 .project {
   padding: 2rem;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.04);
   border-radius: 0.75rem;
   margin-bottom: 1.5rem;
   transition: all var(--transition);
 }
 
 .project:hover {
-  border-color: var(--primary);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.1);
-  transform: translateX(5px);
+  border-color: rgba(139,92,246,0.4);
+  box-shadow: 0 8px 30px rgba(8,10,18,0.6);
+  transform: translateX(5px) scale(1.01);
 }
 
 .project h4 {
@@ -420,8 +433,8 @@ body {
    ============================================ */
 
 .site-footer {
-  background: var(--dark);
-  color: white;
+  background: linear-gradient(180deg, rgba(5,6,12,0.6), rgba(4,5,10,0.9));
+  color: #bdcfff;
   padding: 3rem 0 1rem;
   margin-top: 5rem;
 }
@@ -439,7 +452,7 @@ body {
 }
 
 .footer-grid p {
-  color: #cbd5e1;
+  color: #9fb0df;
   font-size: 0.9rem;
 }
 
@@ -463,10 +476,10 @@ body {
     left: 0;
     right: 0;
     flex-direction: column;
-    background: white;
+    background: linear-gradient(180deg, rgba(6,8,15,0.95), rgba(6,8,15,0.85));
     padding: 1rem;
     gap: 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
     list-style: none;
   }
 
