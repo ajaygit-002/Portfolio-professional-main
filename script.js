@@ -204,6 +204,31 @@ if (darkModeBtn) {
 }
 */
 
+// Minimal-mode toggle: hide section content and show large label
+const minimalToggle = document.getElementById('minimalToggle');
+if (minimalToggle) {
+  const applyMinimal = (enabled, save = true) => {
+    document.body.classList.toggle('minimal-mode', enabled);
+    minimalToggle.setAttribute('aria-pressed', enabled);
+    if (save) localStorage.setItem('minimalMode', enabled ? 'true' : 'false');
+  };
+
+  const saved = localStorage.getItem('minimalMode') === 'true';
+  applyMinimal(saved, false);
+
+  minimalToggle.addEventListener('click', () => {
+    applyMinimal(!document.body.classList.contains('minimal-mode'));
+  });
+
+  // provide keyboard access (Enter/Space)
+  minimalToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      minimalToggle.click();
+    }
+  });
+}
+
 // ============================================
 // PAGE LOAD ANIMATIONS
 // ============================================
@@ -232,91 +257,3 @@ window.addEventListener('load', () => {
 
 console.log('%cWelcome to Ajay\'s Portfolio!', 'font-size: 20px; font-weight: bold; color: #6366f1;');
 console.log('%cMade with ❤️ using HTML, CSS & JavaScript', 'font-size: 12px; color: #64748b;');
-
-/* ============================================
-   STARFIELD BACKGROUND (Canvas)
-   Responsive, performant starfield with gentle parallax
-   ============================================ */
-
-(function initStarfield() {
-  const canvas = document.getElementById('space');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w = canvas.width = window.innerWidth;
-  let h = canvas.height = window.innerHeight;
-
-  const stars = [];
-  const STAR_COUNT = Math.round((w * h) / 8000); // density scales with area
-
-  function rand(min, max) { return Math.random() * (max - min) + min; }
-
-  function createStars() {
-    stars.length = 0;
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 1.4 + 0.2,
-        alpha: Math.random() * 0.9 + 0.1,
-        twinkle: Math.random() * 0.02 + 0.005,
-        phase: Math.random() * Math.PI * 2
-      });
-    }
-  }
-
-  let mouseX = 0.5, mouseY = 0.5;
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX / w;
-    mouseY = e.clientY / h;
-  });
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    createStars();
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-
-    // subtle gradient overlay on top of radial background
-    for (let i = 0; i < stars.length; i++) {
-      const s = stars[i];
-      s.phase += s.twinkle;
-      const a = s.alpha * (0.6 + Math.sin(s.phase) * 0.4);
-
-      // parallax offset based on mouse
-      const px = (mouseX - 0.5) * 30 * (s.r + 0.3);
-      const py = (mouseY - 0.5) * 20 * (s.r + 0.3);
-
-      ctx.beginPath();
-      ctx.globalAlpha = a;
-      const gradient = ctx.createRadialGradient(s.x + px, s.y + py, 0, s.x + px, s.y + py, s.r * 6);
-      gradient.addColorStop(0, 'rgba(255,255,255,1)');
-      gradient.addColorStop(0.4, 'rgba(200,220,255,0.45)');
-      gradient.addColorStop(1, 'rgba(200,220,255,0)');
-      ctx.fillStyle = gradient;
-      ctx.arc(s.x + px, s.y + py, s.r * 2, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // slow drifting milky glow
-    ctx.globalAlpha = 0.03;
-    ctx.fillStyle = '#8b5cf6';
-    ctx.beginPath();
-    ctx.ellipse(w * 0.75 + (mouseX - 0.5) * 200, h * 0.2 + (mouseY - 0.5) * 120, w * 0.4, h * 0.15, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', () => {
-    // throttle resize
-    clearTimeout(window._starResize);
-    window._starResize = setTimeout(resize, 120);
-  });
-
-  createStars();
-  draw();
-})();

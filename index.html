@@ -11,8 +11,6 @@
 
 <body>
 
-  <canvas id="space" aria-hidden="true"></canvas>
-
    <!-- Header -->
 <header class="site-header">
   <div class="container header-row">
@@ -23,6 +21,7 @@
 
     <nav class="nav" id="nav">
       <button id="navToggle" class="nav-toggle">☰</button>
+      <button id="minimalToggle" class="minimal-toggle" aria-pressed="false" title="Toggle minimal view">✦</button>
       <ul class="nav-list" id="nav-list">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -47,9 +46,7 @@
       Final-year engineering student focused on real-world AI solutions.
     </p>
 
-    <p class="meta">
-      <a href="mailto:your-email@example.com">your-email@example.com</a> • India
-    </p>
+    
     
     <div class="links">
       <a class="btn" href="https://github.com/your-username" target="_blank">GitHub</a>
@@ -66,7 +63,7 @@
 </section>
 
   <!-- ABOUT -->
-  <section id="about" class="about container">
+  <section id="about" class="about container" data-label="ABOUT">
     <div class="section-content">
       <h3>About Me</h3>
       <p>
@@ -83,7 +80,7 @@
   </section>
 
   <!-- SKILLS (IMAGE BASED – RESPONSIVE) -->
-  <section id="skills" class="skills container">
+  <section id="skills" class="skills container" data-label="SKILLS">
     <div class="section-content">
       <h3>My Skills</h3>
 
@@ -172,7 +169,7 @@
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="projects container">
+  <section id="projects" class="projects container" data-label="PROJECTS">
     <div class="section-content">
       <h3>Projects</h3>
 
@@ -194,7 +191,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="contact container">
+  <section id="contact" class="contact container" data-label="CONTACT">
     <div class="section-content">
       <h3>Contact</h3>
       <p>I’m open to entry-level AI/ML and frontend roles.</p>

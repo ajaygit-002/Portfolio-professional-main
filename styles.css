@@ -9,34 +9,20 @@
 }
 
 :root {
-  --primary: #8b5cf6; /* neon purple */
-  --secondary: #fb7185; /* pink accent */
-  --dark: #04060a; /* page background deep */
-  --light: #e6eef8;
-  --text: #dbeafe; /* light text */
-  --muted: #94a3b8;
-  --border: rgba(255,255,255,0.06);
-  --transition: 0.28s ease;
+  --primary: #6366f1;
+  --secondary: #ec4899;
+  --dark: #0f172a;
+  --light: #f1f5f9;
+  --text: #1e293b;
+  --border: #e2e8f0;
+  --transition: 0.3s ease;
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text);
   line-height: 1.6;
-  background: radial-gradient(ellipse at bottom, #07112a 0%, var(--dark) 60%);
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Full-screen canvas for starfield */
-#space {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  display: block;
+  background: #ffffff;
 }
 
 /* ============================================
@@ -57,7 +43,8 @@ body {
 .site-header {
   position: sticky;
   top: 0;
-  background: linear-gradient(180deg, rgba(6,8,15,0.6), rgba(6,8,15,0.35));
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
   padding: 1rem 0;
@@ -80,7 +67,7 @@ body {
 
 .brand .role {
   font-size: 0.75rem;
-  color: var(--muted);
+  color: #64748b;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -93,7 +80,7 @@ body {
 
 .nav-list a {
   text-decoration: none;
-  color: var(--light);
+  color: var(--text);
   font-weight: 500;
   transition: color var(--transition);
   position: relative;
@@ -153,19 +140,19 @@ body {
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  color: var(--light);
+  color: var(--dark);
 }
 
 .hero .lead {
   font-size: 1.25rem;
-  color: #cbd5ff;
+  color: #475569;
   margin-bottom: 2rem;
   line-height: 1.8;
 }
 
 .hero .meta {
   font-size: 1rem;
-  color: var(--muted);
+  color: #64748b;
   margin-bottom: 2.5rem;
 }
 
@@ -300,7 +287,7 @@ body {
     width: 220px;
     height: 220px;
   }
-}
+} 
 
 /* ============================================
    ABOUT SECTION
@@ -346,8 +333,14 @@ body {
 .skills-grid-img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 2rem;
+  gap: 1.25rem 2rem;
   margin-top: 2rem;
+  justify-items: center; /* center each card in its cell */
+  align-items: start;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .skill {
@@ -355,32 +348,64 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 1rem 1.15rem;
+  background: var(--light);
   border-radius: 0.75rem;
   transition: all var(--transition);
   cursor: pointer;
   text-align: center;
+  width: 100%;
+  min-height: 110px; /* consistent card height */
 }
 
 .skill:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(139,92,246,0.12);
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.04);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+  background: white;
+  border: 1px solid var(--primary);
 }
 
 .skill img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 0.75rem;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.6rem;
   object-fit: contain;
 }
 
 .skill span {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--light);
+  color: var(--text);
+}
+
+/* Tighter layout on small screens */
+@media (max-width: 768px) {
+  .skills-grid-img {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.9rem 1rem;
+    padding: 0 8px;
+  }
+
+  .skill {
+    min-height: 90px;
+    padding: 0.85rem;
+  }
+
+  .skill img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 420px) {
+  .skills-grid-img {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .skill span {
+    font-size: 0.8rem;
+  }
 }
 
 /* ============================================
@@ -393,16 +418,16 @@ body {
 
 .project {
   padding: 2rem;
-  border: 1px solid rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
   border-radius: 0.75rem;
   margin-bottom: 1.5rem;
   transition: all var(--transition);
 }
 
 .project:hover {
-  border-color: rgba(139,92,246,0.4);
-  box-shadow: 0 8px 30px rgba(8,10,18,0.6);
-  transform: translateX(5px) scale(1.01);
+  border-color: var(--primary);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.1);
+  transform: translateX(5px);
 }
 
 .project h4 {
@@ -433,8 +458,8 @@ body {
    ============================================ */
 
 .site-footer {
-  background: linear-gradient(180deg, rgba(5,6,12,0.6), rgba(4,5,10,0.9));
-  color: #bdcfff;
+  background: var(--dark);
+  color: white;
   padding: 3rem 0 1rem;
   margin-top: 5rem;
 }
@@ -452,7 +477,7 @@ body {
 }
 
 .footer-grid p {
-  color: #9fb0df;
+  color: #cbd5e1;
   font-size: 0.9rem;
 }
 
@@ -476,10 +501,10 @@ body {
     left: 0;
     right: 0;
     flex-direction: column;
-    background: linear-gradient(180deg, rgba(6,8,15,0.95), rgba(6,8,15,0.85));
+    background: white;
     padding: 1rem;
     gap: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid var(--border);
     list-style: none;
   }
 
@@ -588,5 +613,87 @@ body {
   .projects,
   .contact {
     padding: 2rem 0;
+  }
+}
+
+/* --------------------------------------------
+   Minimal Mode: hide detailed content and show
+   large, translucent section labels so the
+   space background is prominent.
+   -------------------------------------------- */
+.minimal-toggle {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--light);
+  padding: 8px 10px;
+  margin-left: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+body.minimal-mode .section-content,
+body.minimal-mode .skills-grid-img,
+body.minimal-mode .project,
+body.minimal-mode .hero-left .lead,
+body.minimal-mode .hero-left .meta,
+body.minimal-mode .links,
+body.minimal-mode .skill {
+  display: none !important;
+}
+
+body.minimal-mode .site-header {
+  background: linear-gradient(180deg, rgba(6,8,15,0.55), rgba(6,8,15,0.35));
+}
+
+/* Large translucent labels that stand out against the starfield */
+.about[data-label],
+.skills[data-label],
+.projects[data-label],
+.contact[data-label] {
+  position: relative;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.minimal-mode .about::before,
+body.minimal-mode .skills::before,
+body.minimal-mode .projects::before,
+body.minimal-mode .contact::before {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: rgba(255,255,255,0.08);
+  letter-spacing: 6px;
+  text-align: center;
+  font-size: clamp(40px, 8vw, 110px);
+  pointer-events: none;
+  transition: color 0.4s ease, transform 0.6s ease;
+}
+
+body.minimal-mode .about::before { transform: translateY(-6px); }
+body.minimal-mode .skills::before { transform: translateY(-2px); }
+body.minimal-mode .projects::before { transform: translateY(4px); }
+body.minimal-mode .contact::before { transform: translateY(8px); }
+
+/* small visual cue when minimal mode is active */
+.minimal-toggle[aria-pressed="true"] {
+  box-shadow: 0 6px 18px rgba(139,92,246,0.18);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  body.minimal-mode .about::before,
+  body.minimal-mode .skills::before,
+  body.minimal-mode .projects::before,
+  body.minimal-mode .contact::before {
+    font-size: clamp(28px, 9vw, 60px);
+    letter-spacing: 4px;
   }
 }
