@@ -86,6 +86,17 @@ body {
   position: relative;
 }
 
+/* Make each nav item feel more spacious and easier to tap */
+.nav-list a {
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.nav-list a:hover {
+  color: var(--primary);
+  background: rgba(99,102,241,0.06);
+}
+
 .nav-list a:hover {
   color: var(--primary);
 }
@@ -141,6 +152,46 @@ body {
   line-height: 1.1;
   margin-bottom: 1.5rem;
   color: var(--dark);
+}
+
+/* Hero visual (right column) styling */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blob {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.16), rgba(236,72,153,0.08));
+  display: block;
+  flex-shrink: 0;
+}
+
+.code-card {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background: linear-gradient(90deg, rgba(15,23,42,0.98), rgba(17,24,39,0.9));
+  color: white;
+  padding: 14px 18px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.45);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  transform: translateZ(0);
 }
 
 .hero .lead {
