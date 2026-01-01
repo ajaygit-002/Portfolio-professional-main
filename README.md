@@ -105,8 +105,8 @@ git clone https://github.com/ajayaidev02/Portfolio-professional-main.git
 ## 📧 Contact
 
 * **Name:** Ajay
-* **Email:** [your-email@example.com](ajayworkmaildev@gmail.com)
-* **GitHub:** [https://github.com/your-username](https://github.com/ajayaidev02)
+* **Email:** [ajayworkmaildev@gmail.com](ajayworkmaildev@gmail.com)
+* **GitHub:** [https://github.com/ajayaidev02](https://github.com/ajayaidev02)
 
 
 ---
