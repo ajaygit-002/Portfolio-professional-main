@@ -468,11 +468,23 @@ body {
   border-radius: 3px;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+.about-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   margin-top: 2rem;
+}
+
+.about-intro-card {
+  width: 100% !important;
+  grid-column: 1 / -1 !important;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
   width: 100%;
   align-items: stretch;
   justify-content: center;
@@ -530,6 +542,21 @@ body {
   align-items: center;
   gap: 0.5rem;
   letter-spacing: -0.3px;
+  word-break: break-word;
+}
+
+.edu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.edu-institute {
+  color: #64748b;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.5;
 }
 
 .about-card p {
@@ -625,6 +652,11 @@ body {
     padding: 0 1rem;
   }
 
+  .about-wrapper {
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -659,11 +691,25 @@ body {
   .about-card p {
     font-size: 0.9rem;
     line-height: 1.6;
+    word-wrap: break-word;
+  }
+
+  .edu-content {
+    gap: 0.4rem;
+  }
+
+  .edu-institute {
+    font-size: 0.85rem;
+  }
+
+  .focus-list {
+    width: 100%;
   }
 
   .focus-list li {
     padding-left: 1.25rem;
     font-size: 0.9rem;
+    word-break: break-word;
   }
 
   .badge {
@@ -679,6 +725,11 @@ body {
 
   .section-content {
     padding: 0 0.75rem;
+  }
+
+  .about-wrapper {
+    gap: 1.25rem;
+    margin-top: 1.25rem;
   }
 
   .about-grid {
@@ -710,19 +761,39 @@ body {
     font-size: 1rem;
     margin-bottom: 0.7rem;
     font-weight: 700;
+    word-break: break-word;
   }
 
   .about-card p {
     font-size: 0.85rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+
+  .edu-content {
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  .edu-institute {
+    font-size: 0.8rem;
   }
 
   .badge {
     padding: 0.25rem 0.6rem;
     font-size: 0.7rem;
+    align-self: flex-start;
+  }
+
+  .focus-list {
+    width: 100%;
+    padding-left: 0;
   }
 
   .focus-list li {
     font-size: 0.85rem;
+    padding-left: 1rem;
+    word-break: break-word;
   }
 }
 
