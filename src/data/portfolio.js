@@ -10,16 +10,14 @@ export const navLinks = [
 ];
 
 export const quickInfo = [
-  { title: 'Experience', value: '4+ Years', detail: 'AI & Frontend' },
-  { title: 'Projects', value: '24', detail: 'Production builds' },
-  { title: 'Tech Stack', value: 'React / AI', detail: 'Full-stack ready' },
+  { title: 'Internship', value: '1 Month', detail: 'Front-End Development, Hazzino Tech' },
+  { title: 'Tech Stack', value: 'React / AI', detail: '' },
 ];
 
 export const focusAreas = [
   { title: 'AI Chatbots', detail: 'OpenAI, RAG, Pinecone, LangChain orchestration.' },
   { title: 'Computer Vision', detail: 'YOLO, OpenCV pipelines, tracking + analytics.' },
   { title: 'Frontend Engineering', detail: 'React, Vite, Tailwind, design systems.' },
-  { title: 'API Backend', detail: 'FastAPI, Flask, secure REST + auth.' },
 ];
 
 export const skills = {
