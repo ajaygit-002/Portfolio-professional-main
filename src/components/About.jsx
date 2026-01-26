@@ -1,29 +1,130 @@
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import './About.css';
 
-export default function About({ infoStats }) {
+const About = () => {
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: false,
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
   return (
-    <section id="about" className="section bg-light">
-      <div className="container">
-        <h2 className="section-title">About</h2>
-        <p className="section-sub">
-          I blend product thinking, AI expertise, and frontend engineering to build fast, reliable experiences. I keep interfaces minimal, legible, and animated with micro-interactions.
-        </p>
-        <div className="row gy-3 info-grid mt-4">
-          {infoStats.map((item, idx) => (
-            <div className="col-6 col-lg-3" key={item.label}>
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="card-ghost h-100"
+    <section className="about" id="about">
+      <div className="container" ref={ref}>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          <motion.h2 variants={itemVariants}>About Me</motion.h2>
+          
+          <div className="about-content">
+            <motion.div className="about-image" variants={itemVariants}>
+              <div className="image-container">
+                <motion.div
+                  className="image-placeholder"
+                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="url(#gradient)" />
+                    <defs>
+                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{ stopColor: '#6366f1', stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: '#ec4899', stopOpacity: 1 }} />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="profile-icon">👨‍💻</div>
+                </motion.div>
+              </div>
+            </motion.div>
+            
+            <motion.div className="about-text" variants={itemVariants}>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.3 }}
               >
-                <p className="mb-1 text-uppercase small">{item.label}</p>
-                <h4 className="fw-bold mb-0">{item.value}</h4>
+                I'm a passionate Full Stack Developer with expertise in creating 
+                beautiful and functional web applications. With a keen eye for design 
+                and a love for clean code, I bring ideas to life through innovative 
+                digital solutions.
+              </motion.p>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.5 }}
+              >
+                My journey in web development started with a curiosity about how 
+                websites work, and has evolved into a deep passion for creating 
+                engaging user experiences that make a difference.
+              </motion.p>
+              
+              <motion.div
+                className="stats"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.7 }}
+              >
+                <div className="stat-item">
+                  <motion.h3
+                    initial={{ scale: 0 }}
+                    animate={inView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ delay: 0.8, type: "spring" }}
+                  >
+                    5+
+                  </motion.h3>
+                  <p>Years Experience</p>
+                </div>
+                <div className="stat-item">
+                  <motion.h3
+                    initial={{ scale: 0 }}
+                    animate={inView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ delay: 1, type: "spring" }}
+                  >
+                    50+
+                  </motion.h3>
+                  <p>Projects Completed</p>
+                </div>
+                <div className="stat-item">
+                  <motion.h3
+                    initial={{ scale: 0 }}
+                    animate={inView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ delay: 1.2, type: "spring" }}
+                  >
+                    30+
+                  </motion.h3>
+                  <p>Happy Clients</p>
+                </div>
               </motion.div>
-            </div>
-          ))}
-        </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default About;
